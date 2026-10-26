@@ -65,11 +65,11 @@ steps:
       if-no-files-found: error
 
 on:
-workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-build:
-runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
 steps:
   - name: Get source code
@@ -97,11 +97,11 @@ steps:
       if-no-files-found: errorname: Build Android APK
 
 on:
-workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-build:
-runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
 steps:
   - name: Get source code
