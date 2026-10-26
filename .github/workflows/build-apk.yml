@@ -1,6 +1,38 @@
 name: Build Android APK
 
 on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+steps:
+  - name: Get source code
+    uses: actions/checkout@v4
+
+  - name: Set up Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: "3.12"
+
+  - name: Install Flet
+    run: |
+      python -m pip install --upgrade pip
+      pip install flet
+      pip install -r requirements.txt
+
+  - name: Build APK
+    run: flet build apk --verbose
+
+  - name: Upload APK
+    uses: actions/upload-artifact@v4
+    with:
+      name: porshyar-apk
+      path: build/apk/*.apk
+      if-no-files-found: error
+
+on:
 workflow_dispatch:
 
 jobs:
